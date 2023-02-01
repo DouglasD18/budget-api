@@ -41,7 +41,19 @@ const makeController = (): ControllerTypes => {
   }
 }
 
-describe("", () => {
+describe("ReadUsersController", () => {
+  it('Should call ReadUsers', async () => {
+    // given
+    const { sut, readUsers } = makeController();
+    
+    // when
+    const called = jest.spyOn(readUsers, "read");
+    sut.handle({ body: '' })
+
+    // then
+    expect(called).toHaveBeenCalled();
+  })
+
   it('Should return 500 if ReadUsers throws', async () => {
     // given
     const { sut, readUsers } = makeController();

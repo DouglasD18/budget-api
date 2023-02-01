@@ -68,4 +68,27 @@ describe("ReadUsersController", () => {
     expect(httpResponse.statusCode).toBe(500);
     expect(httpResponse.body).toEqual(new ServerError());
   })
+
+  it('Should return 200 if valid values is provided.', async () => {
+    // given
+    const { sut } = makeController();
+    
+    // when
+    const httpResponse = await sut.handle({ body: "" });
+
+    // then
+    expect(httpResponse.statusCode).toBe(200);
+    expect(httpResponse.body).toEqual([
+      {
+        "id": 1,
+        "name": "explicabo alias hic reprehenderit deleniti quos id reprehenderit consequuntur ipsam iure voluptatem ea culpa excepturi ducimus repudiandae ab",
+        "price": 6945
+      },
+      {
+        "id": 2,
+        "name": "nostrum veritatis reprehenderit repellendus vel numquam soluta ex inventore ex",
+        "price": 2435
+      },
+    ])
+  })
 })

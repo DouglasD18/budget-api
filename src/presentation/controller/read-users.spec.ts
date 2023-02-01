@@ -14,14 +14,14 @@ const makeReadUsers = (): ReadUsers => {
       const fakeUsers: User[] = [
         {
           "id": 1,
-          "name": "explicabo alias hic reprehenderit deleniti quos id reprehenderit consequuntur ipsam iure voluptatem ea culpa excepturi ducimus repudiandae ab",
-          "price": 6945
+          "name": "cvRhuZicvV",
+          "tax": 79
         },
         {
           "id": 2,
-          "name": "nostrum veritatis reprehenderit repellendus vel numquam soluta ex inventore ex",
-          "price": 2435
-        },
+          "name": "P5hBDBonm3",
+          "tax": 121
+        }
       ];
 
       return new Promise(resolve => resolve(fakeUsers));
@@ -69,7 +69,7 @@ describe("ReadUsersController", () => {
     expect(httpResponse.body).toEqual(new ServerError());
   })
 
-  it('Should return 200 if valid values is provided.', async () => {
+  it('Should return 200 and the corrects users', async () => {
     // given
     const { sut } = makeController();
     
@@ -81,13 +81,13 @@ describe("ReadUsersController", () => {
     expect(httpResponse.body).toEqual([
       {
         "id": 1,
-        "name": "explicabo alias hic reprehenderit deleniti quos id reprehenderit consequuntur ipsam iure voluptatem ea culpa excepturi ducimus repudiandae ab",
-        "price": 6945
+        "name": "cvRhuZicvV",
+        "tax": 79
       },
       {
         "id": 2,
-        "name": "nostrum veritatis reprehenderit repellendus vel numquam soluta ex inventore ex",
-        "price": 2435
+        "name": "P5hBDBonm3",
+        "tax": 121
       },
     ])
   })

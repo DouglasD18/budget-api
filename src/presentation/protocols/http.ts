@@ -1,4 +1,4 @@
-export interface HttpResquest {
+export interface HttpRequest {
   body: any,
   params?: string
 }

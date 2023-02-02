@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watch --runInBand"
+    "test": "jest --watch --runInBand", 
+    "test:ci": "npm test -- --coverage"
   },
   "keywords": [],
   "author": "Douglas Aguiar",

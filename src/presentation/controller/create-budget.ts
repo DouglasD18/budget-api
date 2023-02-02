@@ -1,7 +1,7 @@
 import { CreateBudget } from "../../domain/useCases/create-budget";
 import { InvalidParamError } from "../errors/invalid-param-error";
 import { MissingParamError } from "../errors/missing-param-error";
-import { badRequest, serverError } from "../helpers/http-helper";
+import { badRequest, created, serverError } from "../helpers/http-helper";
 import { Controller } from "../protocols/controller";
 import { HttpRequest, HttpResponse } from "../protocols/http";
 
@@ -33,10 +33,7 @@ export class CreateBudgetController implements Controller {
       }
 
       const budget = await this.createBudget.create({ userId, productsId });
-      return {
-        statusCode: 201,
-        body: budget
-      }
+      return created(budget);
     } catch (error) {
       return serverError();
     }

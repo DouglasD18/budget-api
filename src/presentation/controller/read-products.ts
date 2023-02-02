@@ -1,5 +1,5 @@
 import { ReadProducts } from "../../domain/useCases/read-products";
-import { serverError } from "../helpers/http-helper";
+import { ok, serverError } from "../helpers/http-helper";
 import { Controller } from "../protocols/controller";
 import { HttpRequest, HttpResponse } from "../protocols/http";
 
@@ -10,10 +10,7 @@ export class ReadProductsController implements Controller {
     try {
       const products = await this.readProducts.read();
 
-      return {
-        statusCode: 200,
-        body: products
-      }
+      return ok(products);
     } catch (error) {
       return serverError();
     }

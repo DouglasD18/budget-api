@@ -1,3 +1,8 @@
+export interface CreateBudgetData {
+  userId: number
+  productsId: number[]
+}
+
 export interface CreateBudget {
-  create(userId: number, productsId: number[]): Promise<number>;
+  create(data: CreateBudgetData): Promise<number>;
 }

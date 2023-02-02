@@ -32,7 +32,7 @@ export class CreateBudgetController implements Controller {
         }
       }
 
-      const budget = await this.createBudget.create(userId, productsId);
+      const budget = await this.createBudget.create({ userId, productsId });
       return {
         statusCode: 201,
         body: budget

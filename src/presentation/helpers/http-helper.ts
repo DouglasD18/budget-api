@@ -7,3 +7,10 @@ export const serverError = (): HttpResponse => {
     body: new ServerError()
   }
 }
+
+export const badRequest = (error: Error): HttpResponse => {
+  return {
+    statusCode: 400,
+    body: error
+  }
+}

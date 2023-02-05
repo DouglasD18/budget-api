@@ -5,6 +5,7 @@ import { InvalidParamError } from "../errors/invalid-param-error";
 import { ServerError } from "../errors/server-error";
 import { makeReadUsers } from "./read-users.spec";
 import { makeReadProducts } from "./read-products.spec";
+import { NotFoundError } from "../errors/not-found-error";
 
 interface ControllerTypes {
   sut: CreateBudgetController
@@ -98,6 +99,36 @@ describe("CreateBudget Controller", () => {
     expect(httpResponse.body).toEqual(new InvalidParamError('productsId'));
   })
 
+  it("Should return 404 if not found user", async () => {
+    const { sut } = makeSut();
+    const httpResquest = {
+      body: {
+        userId: 5,
+        productsId: [1, 2]
+      }
+    }
+
+    const httpResponse = await sut.handle(httpResquest);
+
+    expect(httpResponse.statusCode).toBe(404);
+    expect(httpResponse.body).toEqual(new NotFoundError('User'));
+  })
+
+  it("Should return 404 if not found product", async () => {
+    const { sut } = makeSut();
+    const httpResquest = {
+      body: {
+        userId: 1,
+        productsId: [1, 2, 3]
+      }
+    }
+
+    const httpResponse = await sut.handle(httpResquest);
+
+    expect(httpResponse.statusCode).toBe(404);
+    expect(httpResponse.body).toEqual(new NotFoundError('Product'));
+  })
+
   it('Should return 500 if CreateBudget throws', async () => {
     const { sut, createBudgeStub } = makeSut();
     const httpRequest = {
@@ -135,7 +166,7 @@ describe("CreateBudget Controller", () => {
   })
 
   it('Should return 200 if valid values is provided.', async () => {
-    const { sut, createBudgeStub } = makeSut();
+    const { sut } = makeSut();
     const httpRequest = {
       body: {
         userId: 1,

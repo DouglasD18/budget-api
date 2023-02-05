@@ -20,7 +20,7 @@ export class CreateBudgetController implements Controller {
     const ids = products.map((product) => product.id);
     const exists = productsId.some((id) => ids.indexOf(id) === -1);
 
-    if (exists) {
+    if (exists === true) {
       return "Product"
     }
   }
@@ -28,7 +28,8 @@ export class CreateBudgetController implements Controller {
   private async verifyUser(userId: number): Promise<string | void> {
     const users = await this.readUsers.read();
     const exists = users.some((user) => user.id === userId);
-    if (!exists) {
+    
+    if (exists === false) {
       return "User"
     }
   }
@@ -57,12 +58,12 @@ export class CreateBudgetController implements Controller {
         }
       }
 
-      const userExists = this.verifyUser(userId);
+      const userExists = await this.verifyUser(userId);
       if (typeof userExists === "string") {
         return notFound(new NotFoundError(userExists));
       }
 
-      const productsExists = this.verifyProducts(productsId);
+      const productsExists = await this.verifyProducts(productsId);
       if (typeof productsExists === "string") {
         return notFound(new NotFoundError(productsExists));
       }

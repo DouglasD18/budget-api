@@ -8,7 +8,7 @@ interface ControllerTypes {
   readProducts: ReadProducts
 }
 
-const makeReadProducts = (): ReadProducts => {
+export const makeReadProducts = (): ReadProducts => {
   class ReadProductsStub implements ReadProducts {
     async read(): Promise<Product[]> {
       const fakeProducts: Product[] = [

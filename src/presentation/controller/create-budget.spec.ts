@@ -3,6 +3,8 @@ import { CreateBudgetController } from "./create-budget";
 import { CreateBudget, CreateBudgetData } from "../../domain/useCases/create-budget";
 import { InvalidParamError } from "../errors/invalid-param-error";
 import { ServerError } from "../errors/server-error";
+import { makeReadUsers } from "./read-users.spec";
+import { makeReadProducts } from "./read-products.spec";
 
 interface ControllerTypes {
   sut: CreateBudgetController
@@ -23,7 +25,13 @@ const makeCreateBudge = (): CreateBudget => {
 
 const makeSut = (): ControllerTypes => {
   const createBudgeStub = makeCreateBudge();
-  const sut = new CreateBudgetController(createBudgeStub);
+  const readUsersStub = makeReadUsers();
+  const readProductsStub = makeReadProducts();
+  const sut = new CreateBudgetController(
+    createBudgeStub,
+    readProductsStub,
+    readUsersStub
+  );
 
   return {
     sut,

@@ -6,8 +6,6 @@ import { ServerError } from "../errors/server-error";
 import { makeReadUsers } from "./read-users.spec";
 import { makeReadProducts } from "./read-products.spec";
 import { NotFoundError } from "../errors/not-found-error";
-import { ReadProducts } from "../../domain/useCases/read-products";
-import { ReadUsers } from "../../domain/useCases/read-users";
 
 interface ControllerTypes {
   sut: CreateBudgetController
@@ -18,10 +16,7 @@ const budge = 1910;
 
 const makeCreateBudge = (): CreateBudget => {
   class CreateBudgeStub implements CreateBudget {
-    constructor(
-      readProducts: ReadProducts,
-      readUsers: ReadUsers
-    ) {}
+    constructor() {}
 
     create(data: CreateBudgetData): Promise<number> {
       return new Promise(resolve => resolve(budge));
@@ -31,7 +26,7 @@ const makeCreateBudge = (): CreateBudget => {
   const readUsersStub = makeReadUsers();
   const readProductsStub = makeReadProducts();
 
-  return new CreateBudgeStub(readProductsStub, readUsersStub);
+  return new CreateBudgeStub();
 }
 
 const makeSut = (): ControllerTypes => {

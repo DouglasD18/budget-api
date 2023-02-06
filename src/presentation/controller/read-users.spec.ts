@@ -8,7 +8,7 @@ interface ControllerTypes {
   readUsers: ReadUsers
 }
 
-const makeReadUsers = (): ReadUsers => {
+export const makeReadUsers = (): ReadUsers => {
   class ReadUsersStub implements ReadUsers {
     async read(): Promise<User[]> {
       const fakeUsers: User[] = [

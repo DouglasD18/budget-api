@@ -1,12 +1,15 @@
 import { CreateBudget } from "../../domain/useCases/create-budget";
 import { InvalidParamError } from "../errors/invalid-param-error";
 import { MissingParamError } from "../errors/missing-param-error";
-import { badRequest, created, serverError } from "../helpers/http-helper";
+import { NotFoundError } from "../errors/not-found-error";
+import { badRequest, created, notFound, serverError } from "../helpers/http-helper";
 import { Controller } from "../protocols/controller";
 import { HttpRequest, HttpResponse } from "../protocols/http";
 
 export class CreateBudgetController implements Controller {
-  constructor(private createBudget: CreateBudget) {}
+  constructor(
+    private createBudget: CreateBudget
+  ) {}
 
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
@@ -33,6 +36,10 @@ export class CreateBudgetController implements Controller {
       }
 
       const budget = await this.createBudget.create({ userId, productsId });
+      if (typeof budget === 'string') {
+        return notFound(new NotFoundError(budget));
+      }
+
       return created(budget);
     } catch (error) {
       return serverError();

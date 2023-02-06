@@ -6,6 +6,8 @@ import { ServerError } from "../errors/server-error";
 import { makeReadUsers } from "./read-users.spec";
 import { makeReadProducts } from "./read-products.spec";
 import { NotFoundError } from "../errors/not-found-error";
+import { ReadProducts } from "../../domain/useCases/read-products";
+import { ReadUsers } from "../../domain/useCases/read-users";
 
 interface ControllerTypes {
   sut: CreateBudgetController
@@ -16,22 +18,26 @@ const budge = 1910;
 
 const makeCreateBudge = (): CreateBudget => {
   class CreateBudgeStub implements CreateBudget {
+    constructor(
+      readProducts: ReadProducts,
+      readUsers: ReadUsers
+    ) {}
+
     create(data: CreateBudgetData): Promise<number> {
       return new Promise(resolve => resolve(budge));
     }
   }
 
-  return new CreateBudgeStub();
+  const readUsersStub = makeReadUsers();
+  const readProductsStub = makeReadProducts();
+
+  return new CreateBudgeStub(readProductsStub, readUsersStub);
 }
 
 const makeSut = (): ControllerTypes => {
   const createBudgeStub = makeCreateBudge();
-  const readUsersStub = makeReadUsers();
-  const readProductsStub = makeReadProducts();
   const sut = new CreateBudgetController(
-    createBudgeStub,
-    readProductsStub,
-    readUsersStub
+    createBudgeStub
   );
 
   return {
@@ -99,8 +105,8 @@ describe("CreateBudget Controller", () => {
     expect(httpResponse.body).toEqual(new InvalidParamError('productsId'));
   })
 
-  it("Should return 404 if not found user", async () => {
-    const { sut } = makeSut();
+  it("Should return 404 if CreateBudget return User", async () => {
+    const { sut, createBudgeStub } = makeSut();
     const httpResquest = {
       body: {
         userId: 5,
@@ -108,14 +114,15 @@ describe("CreateBudget Controller", () => {
       }
     }
 
+    jest.spyOn(createBudgeStub, "create").mockReturnValueOnce(new Promise(resolve => resolve("User")));
     const httpResponse = await sut.handle(httpResquest);
 
     expect(httpResponse.statusCode).toBe(404);
     expect(httpResponse.body).toEqual(new NotFoundError('User'));
   })
 
-  it("Should return 404 if not found product", async () => {
-    const { sut } = makeSut();
+  it("Should return 404 if CreateBudget return Product", async () => {
+    const { sut, createBudgeStub } = makeSut();
     const httpResquest = {
       body: {
         userId: 1,
@@ -123,6 +130,7 @@ describe("CreateBudget Controller", () => {
       }
     }
 
+    jest.spyOn(createBudgeStub, "create").mockReturnValueOnce(new Promise(resolve => resolve("Product")));
     const httpResponse = await sut.handle(httpResquest);
 
     expect(httpResponse.statusCode).toBe(404);

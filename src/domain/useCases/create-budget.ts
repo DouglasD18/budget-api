@@ -4,5 +4,5 @@ export interface CreateBudgetData {
 }
 
 export interface CreateBudget {
-  create(data: CreateBudgetData): Promise<number>;
+  create(data: CreateBudgetData): Promise<number | string>;
 }

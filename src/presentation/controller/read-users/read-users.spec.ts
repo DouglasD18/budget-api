@@ -88,7 +88,7 @@ describe("ReadUsersController", () => {
         "id": 2,
         "name": "P5hBDBonm3",
         "tax": 121
-      },
+      }
     ])
   })
 })

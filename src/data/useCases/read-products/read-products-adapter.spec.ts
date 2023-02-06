@@ -21,13 +21,13 @@ const fakeProducts: Product[] = [
 ];
 
 const makeRepository = (): ReadProductsRepository => {
-  class CreateBudgeStub implements ReadProductsRepository {
+  class ReadProductsStub implements ReadProductsRepository {
     read(): Promise<Product[]> {
       return new Promise(resolve => resolve(fakeProducts));
     }
   }
 
-  return new CreateBudgeStub();
+  return new ReadProductsStub();
 }
 
 const makeSut = (): SutTypes => {
@@ -40,7 +40,7 @@ const makeSut = (): SutTypes => {
   }
 }
 
-describe("CreateBudget Adapter", () => {
+describe("ReadProducts Adapter", () => {
   it("Should throw if Repository throws", async () => {
     const { sut, readProductsRepositoryStub } = makeSut();
 

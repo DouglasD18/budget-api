@@ -13,6 +13,7 @@
   "author": "Douglas Aguiar",
   "license": "ISC",
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/jest": "^29.4.0",
     "@types/node": "^18.11.18",
     "@types/supertest": "^2.0.12",
@@ -20,5 +21,8 @@
     "supertest": "^6.3.3",
     "ts-jest": "^29.0.5",
     "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "axios": "^1.3.2"
   }
 }

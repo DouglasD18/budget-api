@@ -1,8 +1,8 @@
-import { Product } from "../../domain/models/product";
-import { User } from "../../domain/models/user";
-import { CreateBudget, CreateBudgetData } from "../../domain/useCases/create-budget";
-import { ReadProducts } from "../../domain/useCases/read-products";
-import { ReadUsers } from "../../domain/useCases/read-users";
+import { Product } from "../../../domain/models/product";
+import { User } from "../../../domain/models/user";
+import { CreateBudget, CreateBudgetData } from "../../../domain/useCases/create-budget";
+import { ReadProducts } from "../../../domain/useCases/read-products";
+import { ReadUsers } from "../../../domain/useCases/read-users";
 
 export class CreateBudgetAdapter implements CreateBudget {
   constructor(
@@ -46,8 +46,6 @@ export class CreateBudgetAdapter implements CreateBudget {
     const { tax } = user;
 
     const prices = products.map(product => product.price);
-    console.log(prices);
-    
 
     const budget = prices.reduce((prev, cur) => prev + cur * tax / 100, 0);
     return Number(budget.toFixed(2));

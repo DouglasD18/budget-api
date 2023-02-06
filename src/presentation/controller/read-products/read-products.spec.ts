@@ -1,6 +1,6 @@
-import { Product } from "../../domain/models/product";
-import { ReadProducts } from "../../domain/useCases/read-products";
-import { ServerError } from "../errors/server-error";
+import { Product } from "../../../domain/models/product";
+import { ReadProducts } from "../../../domain/useCases/read-products";
+import { ServerError } from "../../errors/server-error";
 import { ReadProductsController } from "./read-products";
 
 interface ControllerTypes {

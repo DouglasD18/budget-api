@@ -1,6 +1,6 @@
-import { User } from "../../domain/models/user";
-import { ReadUsers } from "../../domain/useCases/read-users";
-import { ServerError } from "../errors/server-error";
+import { User } from "../../../domain/models/user";
+import { ReadUsers } from "../../../domain/useCases/read-users";
+import { ServerError } from "../../errors";
 import { ReadUsersController } from "./read-users";
 
 interface ControllerTypes {

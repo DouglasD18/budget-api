@@ -1,5 +1,5 @@
-import { makeReadProducts } from "../../presentation/controller/read-products.spec";
-import { makeReadUsers } from "../../presentation/controller/read-users.spec";
+import { makeReadProducts } from "../../../presentation/controller/read-products/read-products.spec";
+import { makeReadUsers } from "../../../presentation/controller/read-users/read-users.spec";
 import { CreateBudgetAdapter } from "./create-budget-adapter";
 
 const makeSut = (): CreateBudgetAdapter => {

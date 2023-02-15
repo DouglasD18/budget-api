@@ -15,5 +15,4 @@ export class ReadUsersController implements Controller {
       return serverError();
     }
   }
-  
 }

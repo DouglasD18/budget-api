@@ -7,7 +7,7 @@
     "test": "jest --watch --noStackTrace --runInBand",
     "test:unit": "npm test -- --silent -c jest-unit-config.js",
     "test:integration": "npm test -- --silent -c jest-integration-config.js",
-    "test:ci": "npm test -- --coverage"
+    "test:ci": "npm test --coverage"
   },
   "keywords": [],
   "author": "Douglas Aguiar",

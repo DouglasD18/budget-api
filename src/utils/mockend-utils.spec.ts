@@ -1,8 +1,10 @@
-import { mockendGet } from './mockend-utils';
+import { Mockend } from './mockend-utils';
 
 describe("Mockend Utils", () => {
   it("Should return an array of Products when receive the products value", async () => {
-    const products = await mockendGet("products");
+    const sut = new Mockend();
+
+    const products = await Mockend.fetch("products");
 
     expect(products).toBeTruthy();
     expect(products[0]).toHaveProperty("id");
@@ -11,7 +13,7 @@ describe("Mockend Utils", () => {
   });
 
   it("Should return an array of Users when receive the users value", async () => {
-    const users = await mockendGet("users");
+    const users = await Mockend.fetch("users");
 
     expect(users).toBeTruthy();
     expect(users[0]).toHaveProperty("id");

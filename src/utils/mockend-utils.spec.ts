@@ -1,8 +1,5 @@
 import { mockendGet } from './mockend-utils';
 
-const PRODUCTS_URL = "https://mockend.com/juunegreiros/BE-test-api/products";
-const USERS_URL = "https://mockend.com/juunegreiros/BE-test-api/users";
-
 describe("Mockend Utils", () => {
   it("Should return an array of Products when receive the products value", async () => {
     const products = await mockendGet("products");

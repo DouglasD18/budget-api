@@ -30,12 +30,12 @@ API for listing users and products and for budget calculation.
 
 ## Running with Docker
 
-* Buildando o Dockerfile
+* Building Dockerfile
   ```
   docker build -t budget-api .
   ```
 
-* Rodando a aplicação
+* Exec Application
   ```
   docker run -it -p 3333:3333 budget-api:latest
   ```

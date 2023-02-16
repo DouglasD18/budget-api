@@ -35,7 +35,6 @@ Projeto de uma aplicação fullstack com api de consulta em banco de dados MySQL
 ### Instalando Dependências
 
 ```bash
-cd backend/ 
 npm install
 ``` 
 

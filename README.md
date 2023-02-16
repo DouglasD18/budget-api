@@ -1,6 +1,6 @@
 # Budget API
 
-![Aplicação rodando](cashforce-view.png)
+![Docementação da Aplicação](budget-swaggwer.png)
 
 # Contexto
 Projeto de uma aplicação fullstack com api de consulta em banco de dados MySQL, através da ORM Sequelize, para vizualição de Notas Fiscais registradas no mesmo.

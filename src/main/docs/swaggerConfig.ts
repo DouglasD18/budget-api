@@ -9,28 +9,40 @@ export default {
     },
     "version": "1.0.0"
   },
-  "basePath": "/api",
   "paths": {
-    "/budget/": {
+    "/api/budget/": {
       "post": {
         "description": "Calculate budget",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "userId": {
-                  "type": "number"
-                },
-                "productsId": {
-                  "type": "array",
-                  "items": {
-                    "type": "integer"
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "number"
+                  },
+                  "productsId": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer"
+                    }
                   }
                 }
               },
               "examples": {
-                "userId": 1,
-                "productsId": [1, 2]
+                "body": {
+                  "type": "object",
+                  "properties": {
+                    "userId": {
+                      "value": 1
+                    },
+                    "productsId": {
+                      "value": [1, 2]
+                    }
+                  }
+                }
               }
             }
           }

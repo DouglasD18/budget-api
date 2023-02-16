@@ -70,6 +70,86 @@ export default {
           }
         }
       }
+    },
+    "/api/users/": {
+      "get": {
+        "description": "Read users",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "body": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": "number",
+                      "name": "string",
+                      "tax": "number"
+                    }
+                  },
+                  "example": [
+                    {
+                      "id": 1,
+                      "name": "cvRhuZicvV",
+                      "tax": 79
+                    },
+                    {
+                      "id": 2,
+                      "name": "P5hBDBonm3",
+                      "tax": 121
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Error"
+          }
+        }
+      }
+    },
+    "/api/products/": {
+      "get": {
+        "description": "Read products",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "body": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": "number",
+                      "name": "string",
+                      "price": "number"
+                    }
+                  },
+                  "example": [
+                    {
+                      "id": 1,
+                      "name": "explicabo alias hic reprehenderit deleniti quos id reprehenderit consequuntur ipsam iure voluptatem ea culpa excepturi ducimus repudiandae ab",
+                      "price": 6945
+                    },
+                    {
+                      "id": 2,
+                      "name": "nostrum veritatis reprehenderit repellendus vel numquam soluta ex inventore ex",
+                      "price": 2435
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Error"
+          }
+        }
+      }
     }
   }
 }

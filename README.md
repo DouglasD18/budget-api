@@ -2,23 +2,33 @@
 
 ![Docementação da Aplicação](budget-swagger.png)
 
-# Contexto
-Projeto de uma aplicação fullstack com api de consulta em banco de dados MySQL, através da ORM Sequelize, para vizualição de Notas Fiscais registradas no mesmo.
+# Context
 
-## Técnologias usadas
+API for listing users and products and for budget calculation.
 
-> Desenvolvido usando: NodeJS, ExpressJS, TypeScript, MySQL, Sequelize, Cors, Nodemon, Dotenv, Jest, Mocha, Sinon, Chai
+## Technologies
 
-# Rodando Aplicação
+* NodeJS
+* ExpressJS
+* TypeScript
+* Docker
+* Axios
+* Swagger
+* Jest
+* Supertest
+* Ts-node-dev
+* Rimraf
 
-## Clonando o Repositório
+# Running Application
+
+## Cloning Repo
 
 ```
   git clone git@github.com:DouglasD18/budget-api.git
   cd budget-api
   ```
 
-## Rodando com Docker
+## Running with Docker
 
 * Buildando o Dockerfile
   ```
@@ -30,26 +40,26 @@ Projeto de uma aplicação fullstack com api de consulta em banco de dados MySQL
   docker run -it -p 3333:3333 budget-api:latest
   ```
 
-## Rodando sem Docker
+## Running without Docker
 
-### Instalando Dependências
+### Install Dependencies
 
 ```bash
 npm install
 ``` 
 
-### Executando aplicação
+### Exec Application
 
-* Para rodar a API:
+* To run the API:
 
   ```
   npm start
   ```
 
-* Para rodar os testes da API:
+* To run the API's tests:
 
   ```
   npm run test
   ```
 
-Aplicação rodando na porta http://localhost:3333/
+Application running at port http://localhost:3333/
